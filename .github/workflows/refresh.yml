@@ -1,0 +1,40 @@
+name: Refresh jobs data
+
+# Runs automatically once a month, and can also be run by hand from the Actions tab.
+on:
+  schedule:
+    - cron: "0 7 5 * *"      # 07:00 UTC on the 5th of each month
+  workflow_dispatch:          # adds a "Run workflow" button for manual runs
+
+permissions:
+  contents: write             # lets the job commit the refreshed data.json
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Get the project files
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install the libraries the pipeline needs
+        run: pip install requests pandas openpyxl
+
+      - name: Rebuild data.json from the latest ONS release
+        run: python build_data.py
+
+      - name: Publish only if the data actually changed
+        run: |
+          git config user.name "jobs-map-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data.json
+          if git diff --staged --quiet; then
+            echo "No change in the data this run — nothing to publish."
+          else
+            git commit -m "Auto-update jobs data ($(date -u +%Y-%m-%d))"
+            git push
