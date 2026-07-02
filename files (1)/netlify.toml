@@ -1,0 +1,4 @@
+# Tells Netlify: no build step, just publish the files in this folder as-is.
+[build]
+  publish = "."
+  command = ""
