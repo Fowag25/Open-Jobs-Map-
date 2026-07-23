@@ -1,0 +1,3 @@
+[build]
+  publish = "files (1)"
+  command = ""
