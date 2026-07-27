@@ -135,17 +135,21 @@
   footer{margin-top:28px;font-size:12px;color:var(--ink-2);line-height:1.6;border-top:1px solid var(--line);padding-top:18px;}
   @media (max-width:560px){.reset{margin-left:0;}}
   @media (max-width:640px){
-    .wrap{padding:16px 13px 56px;}
-    .eyebrow{font-size:10px;letter-spacing:.15em;}
-    h1{font-size:30px;line-height:1.02;}
-    .lede{font-size:14px;line-height:1.45;margin-top:8px;}
-    .controls{gap:9px 12px;margin-bottom:11px;align-items:flex-start;}
-    .ctl{gap:5px;}
-    .ctl label{font-size:9.5px;letter-spacing:.09em;}
+    .wrap{padding:14px 13px 56px;}
+    .eyebrow{display:none;}                                   /* declutter the top */
+    h1{font-size:29px;line-height:1.02;}
+    .lede{font-size:13.5px;line-height:1.4;margin-top:6px;max-width:34ch;}
+    .search-wrap{margin-bottom:10px;}
+    .search-wrap input{font-size:16px;padding:10px 14px 10px 40px;border-radius:10px;}  /* shorter; 16px avoids iOS zoom */
+    .search-wrap svg{left:13px;}
+    .controls{gap:8px 10px;margin-bottom:9px;align-items:flex-start;}
+    .ctl{gap:4px;}
+    .ctl label{font-size:9px;letter-spacing:.08em;opacity:.72;}
     .ctl select{padding:8px 10px;font-size:14px;}
-    .seg button{padding:8px 10px;font-size:12.5px;}
+    .seg button{padding:7px 9px;font-size:12px;}
     .slider-wrap{gap:8px;}
     .reset{margin-left:0;align-self:center;padding-bottom:0;}
+    .filter-summary{font-size:12.5px;margin-bottom:8px;}
     #legend{margin-bottom:8px;}
     .tile{padding:8px 9px;}
     .tile .t-name{font-size:12.5px;}
