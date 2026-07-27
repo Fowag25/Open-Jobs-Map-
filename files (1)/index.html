@@ -134,6 +134,26 @@
   .about-body p{margin-bottom:10px;}.about-body b{color:var(--ink);}
   footer{margin-top:28px;font-size:12px;color:var(--ink-2);line-height:1.6;border-top:1px solid var(--line);padding-top:18px;}
   @media (max-width:560px){.reset{margin-left:0;}}
+  @media (max-width:640px){
+    .wrap{padding:16px 13px 56px;}
+    .eyebrow{font-size:10px;letter-spacing:.15em;}
+    h1{font-size:30px;line-height:1.02;}
+    .lede{font-size:14px;line-height:1.45;margin-top:8px;}
+    .controls{gap:9px 12px;margin-bottom:11px;align-items:flex-start;}
+    .ctl{gap:5px;}
+    .ctl label{font-size:9.5px;letter-spacing:.09em;}
+    .ctl select{padding:8px 10px;font-size:14px;}
+    .seg button{padding:8px 10px;font-size:12.5px;}
+    .slider-wrap{gap:8px;}
+    .reset{margin-left:0;align-self:center;padding-bottom:0;}
+    #legend{margin-bottom:8px;}
+    .tile{padding:8px 9px;}
+    .tile .t-name{font-size:12.5px;}
+    .tile .t-count{font-size:16px;}
+    .tile .t-pay{font-size:10.5px;}
+    .tile.small .t-name{font-size:11px;}.tile.small .t-count{font-size:13px;}.tile.small .t-pay{display:none;}
+    .tile.tiny .t-name{font-size:9.5px;}
+  }
 </style>
 </head>
 <body>
@@ -278,7 +298,9 @@ function updateLegend(){
 
 /* ===== treemap ===== */
 const mapEl=document.getElementById("map");const tileEls={};let emptyEl=null;
-const mapHeight=w=>{const vh=window.innerHeight||800;const base=Math.min(w*0.62,Math.max(360,vh-300));return Math.round(Math.max(320,base*(state.zoom||1)));};
+const mapHeight=w=>{const vh=window.innerHeight||800;const z=state.zoom||1;
+  if(w<640)return Math.round(Math.max(520,vh*0.82)*z);        // mobile: tall map so tiles stay readable
+  const base=Math.min(w*0.62,Math.max(360,vh-300));return Math.round(Math.max(320,base*z));};
 function render(){
   if(!DATA)return;
   const W=mapEl.clientWidth,H=mapHeight(W);mapEl.style.height=H+"px";
