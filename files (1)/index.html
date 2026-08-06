@@ -159,6 +159,14 @@
     .tile.tiny .t-name{font-size:9.5px;}
   }
 </style>
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MMW2P9F48S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MMW2P9F48S');
+</script>
 </head>
 <body>
 <div class="wrap">
@@ -225,7 +233,8 @@ async function boot(){
   FIELDS=data.fields;SYN=data.synonyms||{};
   document.getElementById('sampleFlag').classList.toggle('show',!!data.meta.is_sample);
   document.getElementById('footer').innerHTML=
-    `Source: ${data.meta.source}. Licence: ${data.meta.licence}. Latest month: <b>${data.meta.latest_month}</b>. Generated ${data.meta.generated}.`;
+    `Source: ${data.meta.source}. Licence: ${data.meta.licence}. Latest month: <b>${data.meta.latest_month}</b>. Generated ${data.meta.generated}.`
+    + `<br><span style="opacity:.75">Privacy &amp; cookies: this site uses Google Analytics to count visits and see which parts are useful. It sets analytics cookies and collects anonymised usage data (such as pages viewed and rough location). No personal information is collected or sold, and there are no ads. To opt out, use your browser's privacy settings. Data is processed by Google under its <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">privacy policy</a>.</span>`;
   initControls();
   document.getElementById('loading').remove();
   render();
